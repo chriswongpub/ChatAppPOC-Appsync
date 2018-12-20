@@ -1,0 +1,15 @@
+{
+    "AppSyncApiName": "appsyncchattest",
+    "AuthCognitoUserPoolId": {
+        "Fn::GetAtt": [
+            "authcognito9c7c1216",
+            "Outputs.UserPoolId"
+        ]
+    },
+    "schemaGraphql": "s3://appsyncchattest-20181220164407-deployment/amplify-appsync-files/schema.graphql.1545316121659",
+    "ElasticSearchStreamingLambdaCodeS3Key": "amplify-appsync-files/python_streaming_function.zip",
+    "ElasticSearchStreamingLambdaCodeS3Bucket": "appsyncchattest-20181220164407-deployment",
+    "ResolverBucket": "appsyncchattest-20181220164407-deployment",
+    "ResolverRootKey": "amplify-appsync-files",
+    "DeploymentTimestamp": "1545316121659"
+}

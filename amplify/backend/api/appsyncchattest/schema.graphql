@@ -1,0 +1,14 @@
+type User
+  @searchable
+  @auth(rules: [{ allow: owner, identityField: "sub" }])
+  @model(
+    mutations: { create: "registerUser" }
+    queries: { get: "getUser" }
+    subscriptions: null
+  ) {
+  id: ID!
+  username: String!
+	team: String!
+  # is the user registered?
+  registered: Boolean
+}

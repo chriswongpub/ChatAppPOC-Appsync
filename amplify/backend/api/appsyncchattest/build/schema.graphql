@@ -1,0 +1,114 @@
+type User {
+  id: ID!
+  username: String!
+  team: String!
+  registered: Boolean
+}
+
+type Query {
+  getUser(id: ID!): User
+  searchUsers(filter: SearchableUserFilterInput, sort: SearchableUserSortInput, limit: Int, nextToken: Int): SearchableUserConnection
+}
+
+input CreateUserInput {
+  id: ID
+  username: String!
+  team: String!
+  registered: Boolean
+}
+
+input UpdateUserInput {
+  id: ID!
+  username: String
+  team: String
+  registered: Boolean
+}
+
+input DeleteUserInput {
+  id: ID
+}
+
+type Mutation {
+  registerUser(input: CreateUserInput!): User
+}
+
+input SearchableStringFilterInput {
+  ne: String
+  eq: String
+  match: String
+  matchPhrase: String
+  matchPhrasePrefix: String
+  multiMatch: String
+  exists: Boolean
+  wildcard: String
+  regexp: String
+}
+
+input SearchableIDFilterInput {
+  ne: ID
+  eq: ID
+  match: ID
+  matchPhrase: ID
+  matchPhrasePrefix: ID
+  multiMatch: ID
+  exists: Boolean
+  wildcard: ID
+  regexp: ID
+}
+
+input SearchableIntFilterInput {
+  ne: Int
+  gt: Int
+  lt: Int
+  gte: Int
+  lte: Int
+  eq: Int
+  range: [Int]
+}
+
+input SearchableFloatFilterInput {
+  ne: Float
+  gt: Float
+  lt: Float
+  gte: Float
+  lte: Float
+  eq: Float
+  range: [Float]
+}
+
+input SearchableBooleanFilterInput {
+  eq: Boolean
+  ne: Boolean
+}
+
+input SearchableUserFilterInput {
+  id: SearchableIDFilterInput
+  username: SearchableStringFilterInput
+  team: SearchableStringFilterInput
+  registered: SearchableBooleanFilterInput
+  and: [SearchableUserFilterInput]
+  or: [SearchableUserFilterInput]
+  not: SearchableUserFilterInput
+}
+
+enum SearchableSortDirection {
+  asc
+  desc
+}
+
+enum SearchableUserSortableFields {
+  id
+  username
+  team
+  registered
+}
+
+input SearchableUserSortInput {
+  field: SearchableUserSortableFields
+  direction: SearchableSortDirection
+}
+
+type SearchableUserConnection {
+  items: [User]
+  nextToken: String
+}
