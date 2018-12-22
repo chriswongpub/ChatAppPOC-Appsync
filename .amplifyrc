@@ -1,14 +1,14 @@
 {
     "providers": {
         "awscloudformation": {
-            "AuthRoleName": "appsyncchattest-20181220164407-authRole",
-            "UnauthRoleArn": "arn:aws:iam::567333305352:role/appsyncchattest-20181220164407-unauthRole",
-            "AuthRoleArn": "arn:aws:iam::567333305352:role/appsyncchattest-20181220164407-authRole",
+            "AuthRoleName": "appsyncchattest-20181222043309-authRole",
+            "UnauthRoleArn": "arn:aws:iam::567333305352:role/appsyncchattest-20181222043309-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::567333305352:role/appsyncchattest-20181222043309-authRole",
             "Region": "us-east-2",
-            "DeploymentBucketName": "appsyncchattest-20181220164407-deployment",
-            "UnauthRoleName": "appsyncchattest-20181220164407-unauthRole",
-            "StackName": "appsyncchattest-20181220164407",
-            "StackId": "arn:aws:cloudformation:us-east-2:567333305352:stack/appsyncchattest-20181220164407/53594620-045d-11e9-aca4-0a84bc2bb20a"
+            "DeploymentBucketName": "appsyncchattest-20181222043309-deployment",
+            "UnauthRoleName": "appsyncchattest-20181222043309-unauthRole",
+            "StackName": "appsyncchattest-20181222043309",
+            "StackId": "arn:aws:cloudformation:us-east-2:567333305352:stack/appsyncchattest-20181222043309/8b5ac170-0589-11e9-ba81-0a71b7d84638"
         }
     }
 }

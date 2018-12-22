@@ -1,0 +1,25 @@
+.login-form {
+  position: relative;
+  background-color: '#fff';
+  padding: 30px 40px;
+  text-align: left;
+  display: inline-block;
+  min-width: 450px;
+  border-radius: 6px;
+  box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, 0.15);
+  box-sizing: border-box;
+  margin-top: 100px; }
+
+.login-form-footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between; }
+
+.login-btn {
+  flex: 1;
+  height: 40px;
+  margin-left: 20px; }
+
+a:hover, a:visited, a:link, a:active {
+  text-decoration: none; }

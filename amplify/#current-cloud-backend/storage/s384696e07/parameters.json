@@ -1,9 +1,0 @@
-{
-    "bucketName": "appsyncchattest6666bfdb17324c18bbf50d488639de82",
-    "authPolicyName": "s3_amplify_84696e07",
-    "unauthPolicyName": "s3_amplify_84696e07",
-    "authRoleName": "appsyncchattest-20181220164407-authRole",
-    "unauthRoleName": "appsyncchattest-20181220164407-unauthRole",
-    "authPermissions": "rw",
-    "unauthPermissions": ""
-}

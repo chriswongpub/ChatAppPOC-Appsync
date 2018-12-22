@@ -2,26 +2,56 @@ type User {
   id: ID!
   username: String!
   team: String!
-  registered: Boolean
+  channels(filter: ModelChannelFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelChannelConnection
+}
+
+type Channel {
+  id: ID!
+  name: String
+  user: User
+  conversation: Conversation
+}
+
+type Conversation {
+  id: ID!
+  name: String!
+  createdAt: String
+  messages(filter: ModelMessageFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelMessageConnection
+  channels(filter: ModelChannelFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelChannelConnection
+}
+
+type Message {
+  id: ID!
+  content: String
+  createdAt: String
+  owner: String
+  isSent: Boolean
+  conversation: Conversation
+}
+
+type Subscription {
+  onCreateMessage(messageConversationId: ID!): Message @aws_subscribe(mutations: ["createMessage"])
+  onUpdateChannel(channelUserId: ID, status: String): Channel @aws_subscribe(mutations: ["updateChannel"])
 }
 
 type Query {
   getUser(id: ID!): User
+  getConversation(id: ID!): Conversation
   searchUsers(filter: SearchableUserFilterInput, sort: SearchableUserSortInput, limit: Int, nextToken: Int): SearchableUserConnection
+  searchChannels(filter: SearchableChannelFilterInput, sort: SearchableChannelSortInput, limit: Int, nextToken: Int): SearchableChannelConnection
+  searchMessages(filter: SearchableMessageFilterInput, sort: SearchableMessageSortInput, limit: Int, nextToken: Int): SearchableMessageConnection
 }
 
 input CreateUserInput {
   id: ID
   username: String!
   team: String!
-  registered: Boolean
 }
 
 input UpdateUserInput {
   id: ID!
   username: String
   team: String
-  registered: Boolean
 }
 
 input DeleteUserInput {
@@ -30,6 +60,155 @@ input DeleteUserInput {
 
 type Mutation {
   registerUser(input: CreateUserInput!): User
+  createChannel(input: CreateChannelInput!): Channel
+  updateChannel(input: UpdateChannelInput!): Channel
+  createConversation(input: CreateConversationInput!): Conversation
+  createMessage(input: CreateMessageInput!): Message
+}
+
+input CreateChannelInput {
+  id: ID
+  name: String
+  channelUserId: ID
+  channelConversationId: ID
+}
+
+input UpdateChannelInput {
+  id: ID!
+  name: String
+  channelUserId: ID
+  channelConversationId: ID
+}
+
+input DeleteChannelInput {
+  id: ID
+}
+
+input CreateConversationInput {
+  id: ID
+  name: String!
+  createdAt: String
+}
+
+input UpdateConversationInput {
+  id: ID!
+  name: String
+  createdAt: String
+}
+
+input DeleteConversationInput {
+  id: ID
+}
+
+input CreateMessageInput {
+  id: ID
+  content: String
+  createdAt: String
+  owner: String
+  isSent: Boolean
+  messageConversationId: ID
+}
+
+input UpdateMessageInput {
+  id: ID!
+  content: String
+  createdAt: String
+  owner: String
+  isSent: Boolean
+  messageConversationId: ID
+}
+
+input DeleteMessageInput {
+  id: ID
+}
+
+type ModelChannelConnection {
+  items: [Channel]
+  nextToken: String
+}
+
+enum ModelSortDirection {
+  ASC
+  DESC
+}
+
+input ModelStringFilterInput {
+  ne: String
+  eq: String
+  le: String
+  lt: String
+  ge: String
+  gt: String
+  contains: String
+  notContains: String
+  between: [String]
+  beginsWith: String
+}
+
+input ModelIDFilterInput {
+  ne: ID
+  eq: ID
+  le: ID
+  lt: ID
+  ge: ID
+  gt: ID
+  contains: ID
+  notContains: ID
+  between: [ID]
+  beginsWith: ID
+}
+
+input ModelIntFilterInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  contains: Int
+  notContains: Int
+  between: [Int]
+}
+
+input ModelFloatFilterInput {
+  ne: Float
+  eq: Float
+  le: Float
+  lt: Float
+  ge: Float
+  gt: Float
+  contains: Float
+  notContains: Float
+  between: [Float]
+}
+
+input ModelBooleanFilterInput {
+  ne: Boolean
+  eq: Boolean
+}
+
+input ModelChannelFilterInput {
+  id: ModelIDFilterInput
+  name: ModelStringFilterInput
+  and: [ModelChannelFilterInput]
+  or: [ModelChannelFilterInput]
+  not: ModelChannelFilterInput
+}
+
+type ModelMessageConnection {
+  items: [Message]
+  nextToken: String
+}
+
+input ModelMessageFilterInput {
+  id: ModelIDFilterInput
+  content: ModelStringFilterInput
+  createdAt: ModelStringFilterInput
+  owner: ModelStringFilterInput
+  isSent: ModelBooleanFilterInput
+  and: [ModelMessageFilterInput]
+  or: [ModelMessageFilterInput]
+  not: ModelMessageFilterInput
 }
 
 input SearchableStringFilterInput {
@@ -85,7 +264,6 @@ input SearchableUserFilterInput {
   id: SearchableIDFilterInput
   username: SearchableStringFilterInput
   team: SearchableStringFilterInput
-  registered: SearchableBooleanFilterInput
   and: [SearchableUserFilterInput]
   or: [SearchableUserFilterInput]
   not: SearchableUserFilterInput
@@ -100,7 +278,6 @@ enum SearchableUserSortableFields {
   id
   username
   team
-  registered
 }
 
 input SearchableUserSortInput {
@@ -110,5 +287,57 @@ input SearchableUserSortInput {
 
 type SearchableUserConnection {
   items: [User]
+  nextToken: String
+}
+
+input SearchableChannelFilterInput {
+  id: SearchableIDFilterInput
+  name: SearchableStringFilterInput
+  and: [SearchableChannelFilterInput]
+  or: [SearchableChannelFilterInput]
+  not: SearchableChannelFilterInput
+}
+
+enum SearchableChannelSortableFields {
+  id
+  name
+}
+
+input SearchableChannelSortInput {
+  field: SearchableChannelSortableFields
+  direction: SearchableSortDirection
+}
+
+type SearchableChannelConnection {
+  items: [Channel]
+  nextToken: String
+}
+
+input SearchableMessageFilterInput {
+  id: SearchableIDFilterInput
+  content: SearchableStringFilterInput
+  createdAt: SearchableStringFilterInput
+  owner: SearchableStringFilterInput
+  isSent: SearchableBooleanFilterInput
+  and: [SearchableMessageFilterInput]
+  or: [SearchableMessageFilterInput]
+  not: SearchableMessageFilterInput
+}
+
+enum SearchableMessageSortableFields {
+  id
+  content
+  createdAt
+  owner
+  isSent
+}
+
+input SearchableMessageSortInput {
+  field: SearchableMessageSortableFields
+  direction: SearchableSortDirection
+}
+
+type SearchableMessageConnection {
+  items: [Message]
   nextToken: String
 }

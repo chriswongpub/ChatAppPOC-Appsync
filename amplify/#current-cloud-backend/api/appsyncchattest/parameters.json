@@ -2,14 +2,14 @@
     "AppSyncApiName": "appsyncchattest",
     "AuthCognitoUserPoolId": {
         "Fn::GetAtt": [
-            "authcognito9c7c1216",
+            "authcognitoe32e5fd6",
             "Outputs.UserPoolId"
         ]
     },
-    "schemaGraphql": "s3://appsyncchattest-20181220164407-deployment/amplify-appsync-files/schema.graphql.1545316121659",
+    "schemaGraphql": "s3://appsyncchattest-20181222043309-deployment/amplify-appsync-files/schema.graphql.1545442487306",
     "ElasticSearchStreamingLambdaCodeS3Key": "amplify-appsync-files/python_streaming_function.zip",
-    "ElasticSearchStreamingLambdaCodeS3Bucket": "appsyncchattest-20181220164407-deployment",
-    "ResolverBucket": "appsyncchattest-20181220164407-deployment",
+    "ElasticSearchStreamingLambdaCodeS3Bucket": "appsyncchattest-20181222043309-deployment",
+    "ResolverBucket": "appsyncchattest-20181222043309-deployment",
     "ResolverRootKey": "amplify-appsync-files",
-    "DeploymentTimestamp": "1545316121659"
+    "DeploymentTimestamp": "1545442487306"
 }

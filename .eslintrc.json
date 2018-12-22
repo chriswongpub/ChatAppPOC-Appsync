@@ -10,6 +10,7 @@
         "plugin:react/recommended",
         "plugin:jest/recommended"
     ],
+    "parser": "babel-eslint",
     "parserOptions": {
         "ecmaFeatures": {
             "jsx": true
@@ -39,6 +40,11 @@
             "always"
         ],
         "no-unused-vars": "warn",
-        "no-console": "off"
+        "no-console": "off",
+        "jsx-quotes": [
+            "error",
+            "prefer-single"
+        ],
+        "react/prop-types": 1
     }
 }

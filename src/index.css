@@ -6319,3 +6319,15 @@ body {
 .App {
   width: 100vw;
   height: 100vh; }
+
+.list-group-flush .list-group-item:first-child {
+  border-top: 0; }
+
+.list-group-flush h3 {
+  margin-bottom: 0; }
+
+.bg-ember {
+  background-color: #ffac31 !important; }
+
+.bg-blue {
+  background-color: #007eb9 !important; }

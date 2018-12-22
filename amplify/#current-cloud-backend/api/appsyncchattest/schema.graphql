@@ -9,6 +9,57 @@ type User
   id: ID!
   username: String!
 	team: String!
-  # is the user registered?
-  registered: Boolean
+	channels: [Channel] @connection(name: "ConnectionUserChannel")
+}
+
+type Channel
+  @searchable
+  @model(
+    mutations: { create: "createChannel", update: "updateChannel" }
+    queries: null
+    subscriptions: null
+  ) {
+  id: ID!
+  name: String
+  user: User @connection(name: "ConnectionUserChannel")
+  conversation: Conversation @connection(name: "ConnectionChannelConverstaion")
+}
+
+type Conversation
+  @model(
+    mutations: { create: "createConversation" }
+    queries: { get: "getConversation" }
+    subscriptions: null
+  ) {
+  id: ID!
+  name: String!
+  createdAt: String
+  # Messages in this conversation
+  messages: [Message] @connection(name: "ConnectionConversationMessage", sortField: "createdAt")
+  channels: [Channel] @connection(name: "ConnectionChannelConverstaion")
+}
+
+type Message
+  @searchable
+  @auth(rules: [{ allow: owner, identityField: "sub", mutations: [create] }])
+  @model(
+    mutations: { create: "createMessage" }
+    queries: null
+    subscriptions: null
+  ) {
+  id: ID!
+  content: String
+  createdAt: String
+  owner: String
+  # Flag denoting if this message has been accepted by the server or not.
+  isSent: Boolean
+  # The conversation this message belongs to
+  conversation: Conversation @connection(name: "ConnectionConversationMessage")
+}
+
+type Subscription {
+  onCreateMessage(messageConversationId: ID!): Message
+    @aws_subscribe(mutations: ["createMessage"])
+  onUpdateChannel(channelUserId: ID, status: String): Channel
+    @aws_subscribe(mutations: ["updateChannel"])
 }

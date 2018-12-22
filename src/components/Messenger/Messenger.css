@@ -1,0 +1,27 @@
+.messenger {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh; }
+
+.message-pane {
+  flex: 1;
+  width: 100%;
+  overflow: hidden;
+  padding: 20px 10px; }
+
+.message-inline {
+  display: flex;
+  flex-direction: row;
+  width: 100%; }
+
+.message-user {
+  color: #eeeeee; }
+
+.message-container {
+  min-width: 25%;
+  max-width: 50%; }
+
+.inputbar {
+  padding: 10px 10px;
+  background-color: #eeeeee; }

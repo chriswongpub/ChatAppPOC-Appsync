@@ -78,26 +78,26 @@
 				}
 			}
 		},
-		"authcognito9c7c1216": {
+		"authcognitoe32e5fd6": {
 			"Type": "AWS::CloudFormation::Stack",
 			"Properties": {
-				"TemplateURL": "https://s3.amazonaws.com/appsyncchattest-20181220164407-deployment/amplify-cfn-templates/auth/cognito9c7c1216-cloudformation-template.yml",
+				"TemplateURL": "https://s3.amazonaws.com/appsyncchattest-20181222043309-deployment/amplify-cfn-templates/auth/cognitoe32e5fd6-cloudformation-template.yml",
 				"Parameters": {
-					"identityPoolName": "cognito9c7c1216_identitypool_9c7c1216",
+					"identityPoolName": "cognitoe32e5fd6_identitypool_e32e5fd6",
 					"allowUnauthenticatedIdentities": false,
 					"thirdPartyAuth": false,
-					"lambdaLogPolicy": "cognito9c7c1216_lambda_log_policy",
-					"openIdLambdaRoleName": "cognito9c7c1216_openid_lambda_role",
-					"openIdRolePolicy": "cognito9c7c1216_openid_pass_role_policy",
-					"openIdLambdaIAMPolicy": "cognito9c7c1216_openid_lambda_iam_policy",
-					"openIdLogPolicy": "cognito9c7c1216_openid_lambda_log_policy",
-					"userPoolName": "cognito9c7c1216_userpool_9c7c1216",
+					"lambdaLogPolicy": "cognitoe32e5fd6_lambda_log_policy",
+					"openIdLambdaRoleName": "cognitoe32e5fd6_openid_lambda_role",
+					"openIdRolePolicy": "cognitoe32e5fd6_openid_pass_role_policy",
+					"openIdLambdaIAMPolicy": "cognitoe32e5fd6_openid_lambda_iam_policy",
+					"openIdLogPolicy": "cognitoe32e5fd6_openid_lambda_log_policy",
+					"userPoolName": "cognitoe32e5fd6_userpool_e32e5fd6",
 					"autoVerifiedAttributes": "email",
 					"mfaConfiguration": "OFF",
 					"mfaTypes": "SMS Text Message",
-					"roleName": "cognito9c7c1216_sns-role",
-					"roleExternalId": "cognito9c7c1216_role_external_id",
-					"policyName": "cognito9c7c1216-sns-policy",
+					"roleName": "cognitoe32e5fd6_sns-role",
+					"roleExternalId": "cognitoe32e5fd6_role_external_id",
+					"policyName": "cognitoe32e5fd6-sns-policy",
 					"smsAuthenticationMessage": "Your authentication code is {####}",
 					"smsVerificationMessage": "Your verification code is {####}",
 					"emailVerificationSubject": "Your verification code",
@@ -106,24 +106,24 @@
 					"passwordPolicyMinLength": 8,
 					"passwordPolicyCharacters": "Requires Lowercase,Requires Uppercase,Requires Numbers,Requires Symbols",
 					"requiredAttributes": "email",
-					"userpoolClientName": "cognito9c7c1216_app_client",
+					"userpoolClientName": "cognitoe32e5fd6_app_client",
 					"userpoolClientGenerateSecret": true,
 					"userpoolClientRefreshTokenValidity": 30,
 					"userpoolClientReadAttributes": "email",
-					"mfaLambdaRole": "cognito9c7c1216_totp_lambda_role",
-					"mfaLambdaLogPolicy": "cognito9c7c1216_totp_lambda_log_policy",
-					"mfaPassRolePolicy": "cognito9c7c1216_totp_pass_role_policy",
-					"mfaLambdaIAMPolicy": "cognito9c7c1216_totp_lambda_iam_policy",
-					"userpoolClientLambdaRole": "cognito9c7c1216_userpoolclient_lambda_role",
-					"userpoolClientLogPolicy": "cognito9c7c1216_userpoolclient_lambda_log_policy",
-					"userpoolClientLambdaPolicy": "cognito9c7c1216_userpoolclient_lambda_iam_policy",
+					"mfaLambdaRole": "cognitoe32e5fd6_totp_lambda_role",
+					"mfaLambdaLogPolicy": "cognitoe32e5fd6_totp_lambda_log_policy",
+					"mfaPassRolePolicy": "cognitoe32e5fd6_totp_pass_role_policy",
+					"mfaLambdaIAMPolicy": "cognitoe32e5fd6_totp_lambda_iam_policy",
+					"userpoolClientLambdaRole": "cognitoe32e5fd6_userpoolclient_lambda_role",
+					"userpoolClientLogPolicy": "cognitoe32e5fd6_userpoolclient_lambda_log_policy",
+					"userpoolClientLambdaPolicy": "cognitoe32e5fd6_userpoolclient_lambda_iam_policy",
 					"userpoolClientSetAttributes": false,
 					"useDefault": "default",
-					"unAuthRoleName": "appsyncchattest-20181220164407-unauthRole",
-					"authRoleName": "appsyncchattest-20181220164407-authRole",
-					"unAuthRoleArn": "arn:aws:iam::567333305352:role/appsyncchattest-20181220164407-unauthRole",
-					"authRoleArn": "arn:aws:iam::567333305352:role/appsyncchattest-20181220164407-authRole",
-					"resourceName": "cognito9c7c1216",
+					"unAuthRoleName": "appsyncchattest-20181222043309-unauthRole",
+					"authRoleName": "appsyncchattest-20181222043309-authRole",
+					"unAuthRoleArn": "arn:aws:iam::567333305352:role/appsyncchattest-20181222043309-unauthRole",
+					"authRoleArn": "arn:aws:iam::567333305352:role/appsyncchattest-20181222043309-authRole",
+					"resourceName": "cognitoe32e5fd6",
 					"authSelections": "identityPoolAndUserPool"
 				}
 			}
@@ -131,34 +131,34 @@
 		"apiappsyncchattest": {
 			"Type": "AWS::CloudFormation::Stack",
 			"Properties": {
-				"TemplateURL": "https://s3.amazonaws.com/appsyncchattest-20181220164407-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+				"TemplateURL": "https://s3.amazonaws.com/appsyncchattest-20181222043309-deployment/amplify-cfn-templates/api/cloudformation-template.json",
 				"Parameters": {
 					"AppSyncApiName": "appsyncchattest",
 					"AuthCognitoUserPoolId": {
 						"Fn::GetAtt": [
-							"authcognito9c7c1216",
+							"authcognitoe32e5fd6",
 							"Outputs.UserPoolId"
 						]
 					},
-					"schemaGraphql": "s3://appsyncchattest-20181220164407-deployment/amplify-appsync-files/schema.graphql.1545316121659",
+					"schemaGraphql": "s3://appsyncchattest-20181222043309-deployment/amplify-appsync-files/schema.graphql.1545442487306",
 					"ElasticSearchStreamingLambdaCodeS3Key": "amplify-appsync-files/python_streaming_function.zip",
-					"ElasticSearchStreamingLambdaCodeS3Bucket": "appsyncchattest-20181220164407-deployment",
-					"ResolverBucket": "appsyncchattest-20181220164407-deployment",
+					"ElasticSearchStreamingLambdaCodeS3Bucket": "appsyncchattest-20181222043309-deployment",
+					"ResolverBucket": "appsyncchattest-20181222043309-deployment",
 					"ResolverRootKey": "amplify-appsync-files",
-					"DeploymentTimestamp": "1545316121659"
+					"DeploymentTimestamp": "1545442487306"
 				}
 			}
 		},
-		"storages384696e07": {
+		"storages3ef22a93e": {
 			"Type": "AWS::CloudFormation::Stack",
 			"Properties": {
-				"TemplateURL": "https://s3.amazonaws.com/appsyncchattest-20181220164407-deployment/amplify-cfn-templates/storage/s3-cloudformation-template.json",
+				"TemplateURL": "https://s3.amazonaws.com/appsyncchattest-20181222043309-deployment/amplify-cfn-templates/storage/s3-cloudformation-template.json",
 				"Parameters": {
-					"bucketName": "appsyncchattest6666bfdb17324c18bbf50d488639de82",
-					"authPolicyName": "s3_amplify_84696e07",
-					"unauthPolicyName": "s3_amplify_84696e07",
-					"authRoleName": "appsyncchattest-20181220164407-authRole",
-					"unauthRoleName": "appsyncchattest-20181220164407-unauthRole",
+					"bucketName": "appsyncchattest56ec641596654c6492877efedca1d002",
+					"authPolicyName": "s3_amplify_ef22a93e",
+					"unauthPolicyName": "s3_amplify_ef22a93e",
+					"authRoleName": "appsyncchattest-20181222043309-authRole",
+					"unauthRoleName": "appsyncchattest-20181222043309-unauthRole",
 					"authPermissions": "rw",
 					"unauthPermissions": ""
 				}
