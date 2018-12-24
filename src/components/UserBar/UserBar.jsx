@@ -3,14 +3,17 @@ import PropTypes from 'prop-types';
 
 import './UserBar.css';
 
-const UserBar = ({ name, registered, signout }) => (
+const UserBar = ({ name, team, signout }) => (
   <div className='topbar'>
     <nav className='navbar navbar-bbb bg-primary'>
       <div className='navbar-brand'>
-        <span className={'mr-2 text-' + (registered ? 'squidink' : 'light')}>
+        {/* <span className={'mr-2 text-' + (registered ? 'squidink' : 'light')}>
           <i className={(registered ? 'fas' : 'far') + ' fa-user-circle'} />
+        </span> */}
+        <span className={'mr-2 text-squidink'}>
+          <i className={'fas fa-user-circle'} />
         </span>
-        <span> {name} </span>
+        <span> {name} - {team} </span>
       </div>
       <div className='d-flex flex-grow-1'>
         <button className='btn btn-sm btn-squidink ml-auto' onClick={signout}>

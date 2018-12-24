@@ -10,6 +10,7 @@ export const onCreateMessage = gql`
       createdAt
       owner
       isSent
+      messageConversationId,
       conversation {
         id
         name

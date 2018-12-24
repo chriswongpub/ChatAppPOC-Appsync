@@ -16,6 +16,7 @@ type Conversation {
   id: ID!
   name: String!
   createdAt: String
+  type: String
   messages(filter: ModelMessageFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelMessageConnection
   channels(filter: ModelChannelFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelChannelConnection
 }
@@ -26,6 +27,7 @@ type Message {
   createdAt: String
   owner: String
   isSent: Boolean
+  messageConversationId: ID
   conversation: Conversation
 }
 
@@ -88,12 +90,14 @@ input CreateConversationInput {
   id: ID
   name: String!
   createdAt: String
+  type: String
 }
 
 input UpdateConversationInput {
   id: ID!
   name: String
   createdAt: String
+  type: String
 }
 
 input DeleteConversationInput {
@@ -206,6 +210,7 @@ input ModelMessageFilterInput {
   createdAt: ModelStringFilterInput
   owner: ModelStringFilterInput
   isSent: ModelBooleanFilterInput
+  messageConversationId: ModelIDFilterInput
   and: [ModelMessageFilterInput]
   or: [ModelMessageFilterInput]
   not: ModelMessageFilterInput
@@ -319,6 +324,7 @@ input SearchableMessageFilterInput {
   createdAt: SearchableStringFilterInput
   owner: SearchableStringFilterInput
   isSent: SearchableBooleanFilterInput
+  messageConversationId: SearchableIDFilterInput
   and: [SearchableMessageFilterInput]
   or: [SearchableMessageFilterInput]
   not: SearchableMessageFilterInput
@@ -330,6 +336,7 @@ enum SearchableMessageSortableFields {
   createdAt
   owner
   isSent
+  messageConversationId
 }
 
 input SearchableMessageSortInput {

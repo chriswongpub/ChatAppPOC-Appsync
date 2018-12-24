@@ -7,8 +7,7 @@ import uuid from 'uuid/v4';
 
 import './signup.css';
 
-import { getUser } from 'graphql/queries';
-import { registerUser, createChannel, updateConversation } from 'graphql/mutations';
+import { registerUser, createChannel } from 'graphql/mutations';
 
 const conversationIDs = {
   'team1': [

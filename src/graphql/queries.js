@@ -12,6 +12,20 @@ export const getUser = gql`
         items {
           id
           name
+          conversation {
+            id
+            name
+            type
+            createdAt
+            channels {
+              items {
+                user {
+                  id
+                  username
+                }
+              }
+            }
+          }
         }
         nextToken
       }
@@ -20,25 +34,26 @@ export const getUser = gql`
 `;
 
 export const getConversation = gql`
-  query GetConversation($id: ID!) {
+  query GetConversation($id: ID!, $nextToken: String) {
     getConversation(id: $id) {
       id
       name
+      type
       createdAt
-      messages {
+      messages(sortDirection: DESC, limit: 20, nextToken: $nextToken) {
         items {
           id
           content
           createdAt
           owner
           isSent
-        }
-        nextToken
-      }
-      channels {
-        items {
-          id
-          name
+          messageConversationId
+          conversation {
+            id
+            name
+            type
+            createdAt
+          }
         }
         nextToken
       }
@@ -64,8 +79,18 @@ export const searchUsers = gql`
         username
         team
         channels {
+          items {
+            id
+            name
+            conversation {
+              id
+              name
+              type
+              createdAt
+            }
+          }
           nextToken
-        }
+        } 
       }
       nextToken
     }
@@ -96,6 +121,7 @@ export const searchChannels = gql`
         conversation {
           id
           name
+          type
           createdAt
         }
       }
@@ -123,6 +149,7 @@ export const searchMessages = gql`
         createdAt
         owner
         isSent
+        messageConversationId
         conversation {
           id
           name

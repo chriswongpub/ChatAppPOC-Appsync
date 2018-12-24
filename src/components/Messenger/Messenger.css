@@ -10,10 +10,19 @@
   overflow: hidden;
   padding: 20px 10px; }
 
+.message-list {
+  padding: 1em; }
+
 .message-inline {
   display: flex;
   flex-direction: row;
   width: 100%; }
+
+.message-inline-other {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: flex-end; }
 
 .message-user {
   color: #eeeeee; }

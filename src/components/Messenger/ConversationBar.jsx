@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 
 class ConversationBar extends Component {
   render() {
-    let { conversation } = this.props;
-
+    let { channel } = this.props;
+    
     return(
       <div className='topbar'>
         <nav className='navbar navbar-expand-lg navbar-light bg-primary'>
-          <span className='navbar-brand'> GraphQL Chat </span>
+          <span className='navbar-brand'> {channel ? channel.name : 'Appsync Chat POC'} </span>
         </nav>
       </div>
     );
@@ -16,7 +16,7 @@ class ConversationBar extends Component {
 }
 
 ConversationBar.propTypes = {
-  conversation: PropTypes.object
+  channel: PropTypes.object
 };
 
 export default ConversationBar;

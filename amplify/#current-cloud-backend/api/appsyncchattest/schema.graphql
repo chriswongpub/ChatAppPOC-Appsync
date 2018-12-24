@@ -34,6 +34,7 @@ type Conversation
   id: ID!
   name: String!
   createdAt: String
+	type: String
   # Messages in this conversation
   messages: [Message] @connection(name: "ConnectionConversationMessage", sortField: "createdAt")
   channels: [Channel] @connection(name: "ConnectionChannelConverstaion")
@@ -53,6 +54,7 @@ type Message
   owner: String
   # Flag denoting if this message has been accepted by the server or not.
   isSent: Boolean
+	messageConversationId: ID
   # The conversation this message belongs to
   conversation: Conversation @connection(name: "ConnectionConversationMessage")
 }

@@ -12,6 +12,11 @@ export const registerUser = gql`
         items {
           id
           name
+          conversation {
+            id
+            name
+            createdAt
+          }
         }
         nextToken
       }
@@ -35,6 +40,7 @@ export const createChannel = gql`
       conversation {
         id
         name
+        type
         createdAt
         messages {
           nextToken
@@ -63,6 +69,7 @@ export const updateChannel = gql`
       conversation {
         id
         name
+        type
         createdAt
         messages {
           nextToken
@@ -80,6 +87,7 @@ export const createConversation = gql`
     createConversation(input: $input) {
       id
       name
+      type
       createdAt
       messages {
         items {
@@ -95,6 +103,10 @@ export const createConversation = gql`
         items {
           id
           name
+          user {
+            id
+            username
+          }
         }
         nextToken
       }
@@ -110,9 +122,11 @@ export const createMessage = gql`
       createdAt
       owner
       isSent
+      messageConversationId
       conversation {
         id
         name
+        type
         createdAt
         messages {
           nextToken

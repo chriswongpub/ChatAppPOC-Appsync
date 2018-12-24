@@ -13,65 +13,35 @@ import { createConversation, createChannel } from 'graphql/mutations';
 
 class ChatPage extends Component {
   state = {
-    conversation: null
+    channel: null
   };
 
-  componentDidMount() {
-    console.log(this.props);
-  }
+  // UNSAFE_componentWillReceiveProps(nextProps) {
+  //   console.log(nextProps);
+  // }
 
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    console.log('receipt props: ', nextProps);
+  componentDidMount(prevProps, prevState, snapshot) {
+    console.log(this.props);
   }
 
   signout = e => {
     e.preventDefault();
     Auth.signOut()
-      .then(data => window.location.reload())
+      .then(data => this.props.history.push('/login'))
       .catch(err => console.log(err));
   }
 
-  initConversation = converation => (e) => {
-    e.preventDefault();
-    // switch (selection.__typename) {
-    // case 'User':
-    //   return this.startConvoWithUser({ user: selection });
-    // case 'ConvoLink':
-    //   return this.gotoConversation({ convoLink: selection });
-    // case 'Message':
-    //   return this.startConvoAtMessage({ message: selection });
-    // default:
-    //   break;
-    // }
-
-    this.props.createConversation({
-      variables: {
-        input: {
-          id: 'test',
-          name: 'test name'
-        }
-      },
-      update: async (proxy, { data: { createConversation } }) => {
-        console.log('update, ', createConversation);
-        this.props.createChannel({
-          variables: {
-            input: {
-              id: 'test',
-              name: 'test',
-              channelUserId: this.props.data.getUser.id,
-              channelConversationId: 'test'
-            }
-          }
-        });
-      }
+  channelSelected = (channel) => {
+    this.setState({
+      channel
     });
+    
   }
 
   render() {
     let { data: { loading, subscribeToMore, getUser: user = null } = {} } = this.props;
     user = user || null;
-    console.log(user);
-
+    
     if ( loading || !user) return <div/>;
     return(
       <div className='bg-secondary row no-gutters align-items-stretch w-100 h-100 position-absolute'>
@@ -79,21 +49,21 @@ class ChatPage extends Component {
           <div className='border-right border-secondary h-100'>
             <UserBar
               name={user.username}
-              registered={user.registered}
+              team={user.team}
               signout={this.signout}
             />
             <SideBar
               {...{
                 subscribeToMore,
                 channels: user.channels,
-                onSelect: this.initConversation
+                onSelect: this.channelSelected
               }}
             />
           </div>
         </div>
         <div className='col-8 messenger-view'>
           <Messenger
-            conversation={this.state.conversation}
+            channel={this.state.channel}
             userId={this.props.id ? this.props.id : this.props.location.state.id}
           />
         </div>

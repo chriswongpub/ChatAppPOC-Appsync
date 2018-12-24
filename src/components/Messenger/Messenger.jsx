@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { graphql, compose } from 'react-apollo';
 
 import './Messenger.css';
 
@@ -8,30 +9,46 @@ import MessagePane from './MessagePane';
 import InputBar from './InputBar';
 import Message from './Message';
 
+import { getConversation } from 'graphql/queries';
+
 class Messenger extends Component {
+  getUserMap = () => {
+    if ( this.props.channel) {
+      const {
+        channel: { conversation: { channels: { items = [] } = {} } = {} } = {}
+      } = this.props;
+      const users = items.reduce((acc, curr) => {
+        acc[curr.user.id] = curr.user.username;
+        return acc;
+      }, {});
+      return users;
+    }
+  }
+
   render() {
     const {
-      conversation,
+      channel,
       userId,
       data: {
         subscribeToMore,
         fetchMore,
-        getConvo: { messages: { items: messages = [], nextToken } = {} } = {}
+        getConversation: { messages: { items: messages = [], nextToken } = {} } = {}
       } = {}
     } = this.props;
 
     return(
       <div className='messenger'>
         <ConversationBar 
-          conversation={conversation}
+          channel={channel}
         />
         <MessagePane 
-          conversation={conversation}
+          channel={channel}
           userId={userId}
+          userMap={this.getUserMap()}
           {...{ messages, subscribeToMore, fetchMore, nextToken }}
         />
         <InputBar 
-          conversation={conversation}
+          channel={channel}
           userId={userId}
         />
       </div>
@@ -40,7 +57,17 @@ class Messenger extends Component {
 }
 
 Messenger.propTypes = {
-
+  channel: PropTypes.object
 };
 
-export default Messenger;
+let graphql_enhancer = compose(
+  graphql(getConversation, {
+    skip: props => !props.channel,
+    options: props => ({
+      variables: { id: props.channel.conversation.id },
+      fetchPolicy: 'cache-and-network'
+    })
+  })
+);
+
+export default graphql_enhancer(Messenger);
