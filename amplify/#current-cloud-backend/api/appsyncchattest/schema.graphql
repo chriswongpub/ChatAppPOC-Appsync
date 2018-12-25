@@ -21,6 +21,7 @@ type Channel
   ) {
   id: ID!
   name: String
+	channelUserId: ID
   user: User @connection(name: "ConnectionUserChannel")
   conversation: Conversation @connection(name: "ConnectionChannelConverstaion")
 }

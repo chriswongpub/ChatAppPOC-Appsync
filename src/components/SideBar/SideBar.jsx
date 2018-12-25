@@ -55,9 +55,14 @@ class SideBar extends Component {
         }
       ) => {
         console.log('updateQuery on channel subscription', prev, newChannel);
-
         const current = _cloneDeep(prev);
-        current.getUser.conversations.items.unshift(newChannel.conversation);
+
+        let index = current.getUser.channels.items.findIndex(item => item.id === newChannel.id);
+        if ( index !== -1 ) {
+          return;
+        }
+        
+        current.getUser.channels.items.unshift(newChannel);
         return current;
       }
     });

@@ -93,7 +93,29 @@ class ChatPage extends Component {
         });
         const channels = await Promise.all(channelTasks);
         console.log('next steps', channels);
-  
+
+        const QUERY = {
+          query: getUser,
+          variables: { id: me.id }
+        };
+        const prev = proxy.readQuery(QUERY);
+        // console.log('view prev', JSON.stringify(prev, null, 2))
+        let index = prev.getUser.channels.items.findIndex(item => item.id === channels[0].id);
+        if ( index !== -1 ) {
+          return;
+        }
+        const data = {
+          getUser: {
+            ...prev.getUser,
+            channels: {
+              ...prev.getUser.channels,
+              items: [channels[0], ...prev.getUser.channels.items]
+            }
+          }
+        };
+        // console.log('view data', JSON.stringify(data, null, 2));
+        proxy.writeQuery({ ...QUERY, data });
+
         this.toggleModal();
       }
     });
@@ -240,10 +262,7 @@ let graphql_enhancer = compose(
     name: 'createConversation'
   }),
   graphql(createChannel, {
-    name: 'createChannel',
-    options: props => ({
-      ignoreResults: true
-    })
+    name: 'createChannel'
   })
 );
 
