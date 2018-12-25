@@ -5,7 +5,7 @@ import moment from 'moment';
 class Message extends Component {
   render() {
     let { username, message, createdAt, isUser } = this.props;
-    let date = moment(createdAt).format('h:m a YYYY-MM-DD');
+    let date = moment(createdAt).format('hh:mm a YYYY/MM/DD');
     return(
       <div className={ isUser ? 'message-inline' : 'message-inline-other' }>
         <div className={`message-container shadow-sm rounded m-2 pt-2 pb-2 px-2 ${isUser ? 'bg-primary' : 'bg-ember'} text-white`}>

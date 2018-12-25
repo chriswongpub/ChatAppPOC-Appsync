@@ -10,7 +10,10 @@ const awsmobile =  {
     "aws_appsync_region": "us-east-2",
     "aws_appsync_authenticationType": "AMAZON_COGNITO_USER_POOLS",
     "aws_user_files_s3_bucket": "appsyncchattest56ec641596654c6492877efedca1d002",
-    "aws_user_files_s3_bucket_region": "us-east-2"
+    "aws_user_files_s3_bucket_region": "us-east-2",
+    "aws_content_delivery_bucket": "appsyncchattest-20181224170149-hostingbucket",
+    "aws_content_delivery_bucket_region": "us-east-2",
+    "aws_content_delivery_url": "http://appsyncchattest-20181224170149-hostingbucket.s3-website.us-east-2.amazonaws.com"
 };
 
 

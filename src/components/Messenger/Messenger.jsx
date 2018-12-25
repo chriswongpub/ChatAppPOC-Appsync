@@ -7,7 +7,6 @@ import './Messenger.css';
 import ConversationBar from './ConversationBar';
 import MessagePane from './MessagePane';
 import InputBar from './InputBar';
-import Message from './Message';
 
 import { getConversation } from 'graphql/queries';
 

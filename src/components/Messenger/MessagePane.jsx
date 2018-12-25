@@ -67,17 +67,6 @@ class MessagePane extends Component {
     }
   }
 
-  // UNSAFE_componentWillReceiveProps(nextProps) {
-  //   console.log(nextProps);
-  //   this.obs
-  //     .pipe(
-  //       pairwise(),
-  //       filter(this.isScrollingUpPastThreshold),
-  //       exhaustMap(this.loadMoreMessages)
-  //     )
-  //     .subscribe(_ => {});
-  // }
-
   isScrollingUpPastThreshold = ([prev, curr]) => {
     // console.log('isScrolling', prev, curr)
     const result = (prev.top > curr.top) & (curr.top < SCROLL_THRESHOLD);

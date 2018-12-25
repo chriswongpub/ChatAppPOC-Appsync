@@ -33,7 +33,7 @@ type Message {
 
 type Subscription {
   onCreateMessage(messageConversationId: ID!): Message @aws_subscribe(mutations: ["createMessage"])
-  onUpdateChannel(channelUserId: ID, status: String): Channel @aws_subscribe(mutations: ["updateChannel"])
+  onCreateChannel(channelUserId: ID!): Channel @aws_subscribe(mutations: ["createChannel"])
 }
 
 type Query {

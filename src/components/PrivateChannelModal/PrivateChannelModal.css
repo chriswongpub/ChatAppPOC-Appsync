@@ -1,0 +1,26 @@
+.modal-container {
+  width: 400px;
+  height: 600px; }
+
+.modal-search-input {
+  margin-top: 20px;
+  margin-bottom: 3px; }
+
+.modal-user-list {
+  max-height: 400px; }
+
+.modal-user-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between; }
+
+.modal-user-item-name {
+  flex: 1; }
+
+.modal-no-users {
+  font-size: 18px;
+  margin-top: 20px; }
+
+.modal-user-description {
+  flex: 1; }

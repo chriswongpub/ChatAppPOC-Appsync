@@ -142,10 +142,10 @@
 					},
 					"ElasticSearchStreamingLambdaCodeS3Key": "amplify-appsync-files/python_streaming_function.zip",
 					"ElasticSearchStreamingLambdaCodeS3Bucket": "appsyncchattest-20181222043309-deployment",
-					"schemaGraphql": "s3://appsyncchattest-20181222043309-deployment/amplify-appsync-files/schema.graphql.1545656567876",
+					"schemaGraphql": "s3://appsyncchattest-20181222043309-deployment/amplify-appsync-files/schema.graphql.1545697724877",
 					"ResolverBucket": "appsyncchattest-20181222043309-deployment",
 					"ResolverRootKey": "amplify-appsync-files",
-					"DeploymentTimestamp": "1545656567876"
+					"DeploymentTimestamp": "1545697724877"
 				}
 			}
 		},
@@ -162,6 +162,13 @@
 					"authPermissions": "rw",
 					"unauthPermissions": ""
 				}
+			}
+		},
+		"hostingS3AndCloudFront": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/appsyncchattest-20181222043309-deployment/amplify-cfn-templates/hosting/template.json",
+				"Parameters": {}
 			}
 		}
 	},

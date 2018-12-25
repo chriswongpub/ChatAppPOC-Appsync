@@ -29,24 +29,20 @@ export const createChannel = gql`
     createChannel(input: $input) {
       id
       name
-      user {
-        id
-        username
-        team
-        channels {
-          nextToken
-        }
-      }
+      channelUserId
       conversation {
         id
         name
         type
         createdAt
-        messages {
-          nextToken
-        }
         channels {
-          nextToken
+          items {
+            channelUserId
+            user {
+              id
+              username
+            }
+          }
         }
       }
     }

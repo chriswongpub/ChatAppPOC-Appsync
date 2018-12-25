@@ -26,7 +26,7 @@ const UserBar = ({ name, team, signout }) => (
 
 UserBar.propTypes = {
   name: PropTypes.string,
-  registered: PropTypes.bool,
+  team: PropTypes.string,
   signout: PropTypes.func.isRequired
 };
 

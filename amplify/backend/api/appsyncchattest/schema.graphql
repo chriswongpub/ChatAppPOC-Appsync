@@ -21,6 +21,7 @@ type Channel
   ) {
   id: ID!
   name: String
+	channelUserId: ID
   user: User @connection(name: "ConnectionUserChannel")
   conversation: Conversation @connection(name: "ConnectionChannelConverstaion")
 }
@@ -62,6 +63,6 @@ type Message
 type Subscription {
   onCreateMessage(messageConversationId: ID!): Message
     @aws_subscribe(mutations: ["createMessage"])
-  onUpdateChannel(channelUserId: ID, status: String): Channel
-    @aws_subscribe(mutations: ["updateChannel"])
+  onCreateChannel(channelUserId: ID!): Channel
+    @aws_subscribe(mutations: ["createChannel"])
 }

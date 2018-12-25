@@ -8,6 +8,7 @@ type User {
 type Channel {
   id: ID!
   name: String
+  channelUserId: ID
   user: User
   conversation: Conversation
 }
@@ -33,7 +34,7 @@ type Message {
 
 type Subscription {
   onCreateMessage(messageConversationId: ID!): Message @aws_subscribe(mutations: ["createMessage"])
-  onUpdateChannel(channelUserId: ID, status: String): Channel @aws_subscribe(mutations: ["updateChannel"])
+  onCreateChannel(channelUserId: ID!): Channel @aws_subscribe(mutations: ["createChannel"])
 }
 
 type Query {
@@ -194,6 +195,7 @@ input ModelBooleanFilterInput {
 input ModelChannelFilterInput {
   id: ModelIDFilterInput
   name: ModelStringFilterInput
+  channelUserId: ModelIDFilterInput
   and: [ModelChannelFilterInput]
   or: [ModelChannelFilterInput]
   not: ModelChannelFilterInput
@@ -298,6 +300,7 @@ type SearchableUserConnection {
 input SearchableChannelFilterInput {
   id: SearchableIDFilterInput
   name: SearchableStringFilterInput
+  channelUserId: SearchableIDFilterInput
   and: [SearchableChannelFilterInput]
   or: [SearchableChannelFilterInput]
   not: SearchableChannelFilterInput
@@ -306,6 +309,7 @@ input SearchableChannelFilterInput {
 enum SearchableChannelSortableFields {
   id
   name
+  channelUserId
 }
 
 input SearchableChannelSortInput {

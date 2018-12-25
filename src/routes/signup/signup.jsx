@@ -120,6 +120,7 @@ class SignupPage extends Component {
           }
         })
       );
+      return conversationId;
     });
     await Promise.all(channelTasks);
   }

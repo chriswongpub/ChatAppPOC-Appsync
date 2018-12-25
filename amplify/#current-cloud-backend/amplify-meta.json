@@ -19,7 +19,7 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/appsyncchattest-20181222043309-deployment/amplify-cfn-templates/auth/cognitoe32e5fd6-cloudformation-template.yml",
 				"logicalId": "authcognitoe32e5fd6"
 			},
-			"lastPushTimeStamp": "2018-12-24T13:04:46.876Z",
+			"lastPushTimeStamp": "2018-12-24T22:48:31.314Z",
 			"output": {
 				"AppClientSecret": "fgh5l7i1d9tatdti9dte6nvka570b97913pic7rcsf1964gdrl7",
 				"UserPoolId": "us-east-2_fg80hW8P0",
@@ -49,8 +49,8 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/appsyncchattest-20181222043309-deployment/amplify-cfn-templates/api/cloudformation-template.json",
 				"logicalId": "apiappsyncchattest"
 			},
-			"lastPushTimeStamp": "2018-12-24T13:04:46.879Z",
-			"lastPushDirHash": "6pYgbq4+ixeMu+rtqwB1N40Bb9E="
+			"lastPushTimeStamp": "2018-12-24T22:48:31.317Z",
+			"lastPushDirHash": "r5pJzxLwL6xiu+u7YPOo/51bu2c="
 		}
 	},
 	"storage": {
@@ -61,12 +61,30 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/appsyncchattest-20181222043309-deployment/amplify-cfn-templates/storage/s3-cloudformation-template.json",
 				"logicalId": "storages3ef22a93e"
 			},
-			"lastPushTimeStamp": "2018-12-24T13:04:46.878Z",
+			"lastPushTimeStamp": "2018-12-24T22:48:31.315Z",
 			"output": {
 				"BucketName": "appsyncchattest56ec641596654c6492877efedca1d002",
 				"Region": "us-east-2"
 			},
 			"lastPushDirHash": "RWHzCfX0+FgN+u8yciFUpANzWD4="
+		}
+	},
+	"hosting": {
+		"S3AndCloudFront": {
+			"service": "S3AndCloudFront",
+			"providerPlugin": "awscloudformation",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/appsyncchattest-20181222043309-deployment/amplify-cfn-templates/hosting/template.json",
+				"logicalId": "hostingS3AndCloudFront"
+			},
+			"lastPushTimeStamp": "2018-12-24T22:48:31.316Z",
+			"output": {
+				"S3BucketSecureURL": "https://appsyncchattest-20181224170149-hostingbucket.s3.amazonaws.com",
+				"WebsiteURL": "http://appsyncchattest-20181224170149-hostingbucket.s3-website.us-east-2.amazonaws.com",
+				"Region": "us-east-2",
+				"HostingBucketName": "appsyncchattest-20181224170149-hostingbucket"
+			},
+			"lastPushDirHash": "sVbjGhR/MGTS+uEO0plJRkNS1/8="
 		}
 	}
 }

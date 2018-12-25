@@ -26,28 +26,23 @@ export const onCreateMessage = gql`
   }
 `;
 
-export const onUpdateChannel = gql`
-  subscription OnUpdateChannel($channelUserId: ID, $status: String) {
-    onUpdateChannel(channelUserId: $channelUserId, status: $status) {
+export const onCreateChannel = gql`
+  subscription onCreateChannel($channelUserId: ID!) {
+    onCreateChannel(channelUserId: $channelUserId) {
       id
       name
-      user {
-        id
-        username
-        team
-        channels {
-          nextToken
-        }
-      }
       conversation {
         id
         name
+        type
         createdAt
-        messages {
-          nextToken
-        }
         channels {
-          nextToken
+          items {
+            user {
+              id
+              username
+            }
+          }
         }
       }
     }
