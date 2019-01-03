@@ -32,6 +32,7 @@ class ChatPage extends Component {
   }
 
   openNewChannelModal = (e) => {
+    e.preventDefault();
     this.setState({
       selectedUsers: []
     });
